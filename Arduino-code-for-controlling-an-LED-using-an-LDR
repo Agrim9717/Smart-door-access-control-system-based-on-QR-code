@@ -1,0 +1,26 @@
+//ldr and bulb control pins
+const int ledPin=13;
+const int ldrPin=A5; //analog input
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  pinMode(ledPin,OUTPUT);
+  pinMode(ldrPin,INPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  int ldrStatus=analogRead(ldrPin);
+  Serial.println(ldrStatus);
+  if(ldrStatus<=10)   //when it's dark less conductivity(low voltage)
+  {
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Dark outside, Bulb is ON");
+  }
+  else
+  {
+    digitalWrite(ledPin, LOW);
+    Serial.println("Bright outside");
+  }
+}
